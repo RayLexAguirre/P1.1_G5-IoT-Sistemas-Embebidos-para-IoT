@@ -1,14 +1,39 @@
-void post_maxPos (int n, int counter) {
-  uint8_t utOcMp = pow(2, n-1)-1;
-  int8_t tOcMp = pow(2, n -1)-1;
-  uint16_t utSeMp = pow(2, n-1)-1;
-  int16_t tSeMp = pow(2, n -1)-1;
-  uint32_t utDoMp = pow(2, n-1)-1;
-  int32_t tDoMp = pow(2, n-1)-1;
-  uint64_t utCuMp = pow(2, n-1)-1;
-  int64_t tCuMp = pow(2, n-1)-1;
+void get_data (){
+  int number = Serial.read();
+  Serial.print(number);
 
-  int maxPos[8]{
+   /*    
+  if(Serial.available() > 0){
+
+  }
+    Serial.println("Ingrese un valor");
+    delay(2000);
+    */
+}
+
+void post_maxPos (int n, int counter) {
+  
+
+  uint8_t utOcMp = pow(2, n - 1)-1;
+  int8_t tOcMp = 0;
+    if (n >= 9){
+      tOcMp = pow(2, 8 - 1)-1;
+    } else {
+      tOcMp = pow(2, n - 1)-1;
+    }
+  uint16_t utSeMp = pow(2, n - 1)-1;
+  int16_t tSeMp = 0;
+    if (n >= 17){
+      tSeMp = pow(2, 16 - 1)-1;
+    } else {
+      tSeMp = pow(2, n - 1)-1;
+    }
+  uint32_t utDoMp = pow(2, n - 1)-1;
+  int32_t tDoMp = pow(2, n - 1)-1;
+  uint64_t utCuMp = pow(2, n - 1)-1;
+  int64_t tCuMp = pow(2, n - 1)-1;
+
+  int64_t maxPos[8]{
   utOcMp, 
   tOcMp,
   utSeMp, 
@@ -25,15 +50,25 @@ void post_maxPos (int n, int counter) {
 
 void post_maxNeg (int n, int counter) {
   uint8_t utOcMn = pow(2, n)-1;
-  int8_t tOcMn = pow(2, n)-1;
+  int8_t tOcMn = 0;
+    if (n >= 9){
+      tOcMn = pow(2, 8)-1;
+    } else {
+      tOcMn = pow(2, n)-1;
+    }
   uint16_t utSeMn = pow(2, n)-1;
-  int16_t tSeMn = pow(2, n)-1;
+  int16_t tSeMn = 0;
+    if (n >= 17){
+      tSeMn = pow(2, 16)-1;
+    } else {
+      tSeMn = pow(2, n)-1;
+    }
   uint32_t utDoMn = pow(2, n)-1;
   int32_t tDoMn = pow(2, n)-1;
   uint64_t utCuMn = pow(2, n)-1;
   int64_t tCuMn = pow(2, n)-1;
 
-  int maxNeg[8]{
+  uint64_t maxNeg[8]{
     utOcMn, 
     tOcMn,
     utSeMn, 
@@ -43,7 +78,7 @@ void post_maxNeg (int n, int counter) {
     utCuMn,
     tCuMn  
   };
-  
+
   Serial.print("Rango máximo: ");
   Serial.println(maxNeg[counter]);
 }
@@ -59,7 +94,7 @@ void post_min (int n, int counter) {
   uint64_t utCuM = -(pow(2, n-1));
   int64_t tCuM = -(pow(2, n-1));
 
-  int Min[8]{
+  int64_t Min[8]{
     utOcM, 
     tOcM,
     utSeM, 
@@ -69,7 +104,17 @@ void post_min (int n, int counter) {
     utCuM,
     tCuM  
   };
-  
+ /* 
+Serial.println("--------- uint8_t");
+Serial.println(Min[0]);
+Serial.println(Min[1]);
+Serial.println(Min[2]);
+Serial.println(Min[3]);
+Serial.println(Min[4]);
+Serial.println(Min[5]);
+Serial.println(Min[6]);
+Serial.println(Min[7]);
+  */
   Serial.print("Rango mínimo: ");
   Serial.println(Min[counter]);
 }
