@@ -12,5 +12,5 @@ void setup( void ) {
 }
 
 void loop ( void ) {
- calculadora.get_data(n, counter);
+ calculadora.get_data(n, counter); //Se manda llamar el get_data que será el encargado de ejecutar todas las funciones
 }
