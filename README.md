@@ -38,43 +38,60 @@ Conocer y emplear tarjetas de desarrollo embebido para la generación de prototi
 ## EXPLICACIÓN DEL PROCESO
 
 1. Configurar un baudrate de 115200.
+
    Es la tasa de transferencia de datos al puerto serial
+
    ![Configuración del Baud Rate](img/P1-BAUDRATE.jpg)
 
 2. Crear una clase llamada “serial_class” mediante un archivo externo con extensión “.h”.
+
    Se crea un archivo tipo header donde se colocarán todas las funciones separadas por públicas y privadas, dentro del archivo .ino se mandará llamar las funciones públicas y se establecerán variables a utilizar.
+
    ![Creación de la clase ‘serial_class’](img/P2-CLASS.jpg)
 
 3. Investigar y comprender el funcionamiento de la función “Serial.available()” y “Serial.read()”.
+
    El read se utilizó para obtener un dato solamente que en este se especifica que no tome el salto de línea como otro dato. Con el available permite revisar si se ha ingresado un dato o si aún no.
+
    ![Uso del ‘Serial.available()’ y ‘Serial.read()’](img/P3-SERIAL.jpg)
 
 4. Crear, integrar un método llamado “get_data”, en el que se obtenga la información del puerto serial mediante el uso de las funciones del punto 7, para enviarlo a los métodos “get_min” y “get_max”.
+
    Para él la creación de la función get_data se requería que obtuviera información del puerto serial por lo que se utilizó el Serial.read() pero en dado caso de que no se recibiera aún ningún dato entonces imprimiría "INGRESA UN NÚMERO".
    Cuando recibiera un número lo ingresa en una variable para después entrar en un ciclo donde será enviado a la función “post_data”, cuando termine de ejecutar todo lo que debe hacer la función se aumenta el contador en 1 hasta finalizar el ciclo, regresando al archivo P1.ino volverá a ejecutar el ciclo.
+
    ![Establecimiento del ciclo de ejecución de la función “get_data”](img/P4.1-DATALOOP.jpg)
    ![La composición de la función](img/P4.2-DATALOOP.jpg)
 
 5. Posteriormente crear e integrar un método llamado “get_min” que contenga un algoritmo que calcule el valor mínimo que puede mostrarse con los tipos de variables más comunes (uint8_t, int8_t, uint16_t, int16_t, uint32_t, int32_t, uint64_t, int64_t).
+
    Para la función “get_min” se requiere crear cuatro variables int8_t, int16_t, int32_t y int64_t dentro de estas se resolverá la ecuación -(2^n-1) donde n es el número recibido de “get_data”. Todas estas variables se ingresarán en un array para posteriormente imprimir la variable que se encuentra en la posición especificada (por el counter) del array.
+
    ![Integración de la función “get_min”](img/P5-GETMIN.jpg)
 
 6. Crear e integrar un método llamado “get_max” que contenga un algoritmo que calcule el valor máximo que puede mostrarse con los tipos de variables mostradas en el punto 9.
+
    Al ejecutar la función “get_max” se tendrá unas condiciones dependiendo del número que se recibió, si se recibe 1 entonces se ejecutará la función “post_maxPos” y en cualquier otro caso se ejecuta la función “post_maxNeg”.
    Para la función get_max se requiere crear ocho variables, 4 de la función “post_maxPos”: int8_t, int16_t, int32_t y int64_t, dentro de estas se resolverá la ecuación (2^n-1)-1 donde n es el número recibido de “get_data”. y 4 de “post_maxNeg”: uint8_t, uint16_t, uint32_t y uint64_t dentro de estas se resolverá la ecuación (2^n)-1 donde n es el número recibido de “get_data”.
    Todas estas variables se ingresarán en un array respectivo a su función para posteriormente imprimir la variable que se encuentra en la posición especificada (por el counter) del array.
+
    ![Intergración de las funciones “get_max”, “post_maxNeg” y “post_maxPos"](img/P6-GETMAX.jpg)
 
 7. Crear e integrar un método llamado “post_data”, en el que se muestre la información concatenada final mediante el puerto serial.
+
    Se crea la función “get_infoVar” para dar información al usuario sobre cuántos bits se están utilizando en las variables.
    La función “post_data” se encargará de ejecutar las funciones “get_info”, “get_max'' y “get_min” pero organizará la manera en que se imprimirán los resultados para tener un texto más entendible.
-   ![Integración de la función “post_data”](img/P7-POSTDATA.jpg)
+
+   ![Integración de la función “post_data”](img/7-POSTDATA.jpg)
 
 ## RESULTADOS
 
 Al abrir el puerto serial del COM3 solicitará que se ingrese un número al ingresar el número se ejecutarán unas funciones.
+
 ![Puerto serial esperando el ingreso de un número](img/R1-COM3.jpg)
+
 Al ingresar el número se ejecutarán las funciones dándonos como resultado su cálculo pero con variables de 8, 16, 32 y 64 bits en su rango máximo y mínimo en negativo así como positivo.
+
 ![Puerto serial que recibió un número y está ejecutando las ecuaciones](img/R2-RESULTADO.jpg)
 
 ## OBSERVACIONES Y CONCLUSIONES
@@ -94,7 +111,9 @@ Al ingresar el número se ejecutarán las funciones dándonos como resultado su 
   Al concluir la realización de esta práctica y la elaboración del presente informe, corroboré mis conocimientos acerca de calcular los rangos de un entero con o sin signo de n bits. Todas las instalaciones necesarias para el desarrollo de la práctica fueron importantes y sencillas de lograr. La investigación de muchas instrucciones esenciales fue clave para el correcto funcionamiento del producto final.
 
 - González Magaña Gamaliel Adalid:
+
   Durante esta práctica aprendí un poco del lenguaje de programación de C++, el cómo funciona y cuales son unos de sus usos. También aprendí sobre el hardware de nuestra placa de desarrollo ESP32, así como sus principales diferencias con otras placas, sus aplicaciones y fortalezas. Una de las fortalezas más destacables del lenguaje es que es muy ligero, y una de las fortalezas de nuestra placa es que es de bajo consumo, por lo que al juntar ambas ventajas se permite tener un sistema muy ligero y que puede funcionar por mucho tiempo.
+
 - Meza Aguilar Karol Marcelino:
 
   A lo largo de esta práctica pude comprender sobre el lenguaje C++ ya que no lo había usado prácticamente, al igual que nuestra placa ESP32 que a comparación de la que teníamos anteriormente esta posee más ventajas y facilidades que nos ayudaron a desarrollar la práctica sin problemas, en la cual pude utilizar los conocimientos que he adquirido a lo largo de esta parcial sobre Arduino.
