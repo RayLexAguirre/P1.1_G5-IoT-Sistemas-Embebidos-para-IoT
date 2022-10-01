@@ -82,7 +82,7 @@ Conocer y emplear tarjetas de desarrollo embebido para la generación de prototi
    Se crea la función “get_infoVar” para dar información al usuario sobre cuántos bits se están utilizando en las variables.
    La función “post_data” se encargará de ejecutar las funciones “get_info”, “get_max'' y “get_min” pero organizará la manera en que se imprimirán los resultados para tener un texto más entendible.
 
-   ![Integración de la función “post_data”](img/7-POSTDATA.jpg)
+   ![Integración de la función “post_data”](img/P7-POSTDATA.jpg)
 
 ## RESULTADOS
 
