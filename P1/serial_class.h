@@ -58,7 +58,7 @@ void post_maxPos (int n, int counter) {
   int32_t tDoMp = pow(2, n - 1)-1;
   int64_t tCuMp = pow(2, n - 1)-1;
 
-  uint64_t maxPos[8]{ //Se guardan las variables creadas dentro de un array 
+  uint64_t maxPos[4]{ //Se guardan las variables creadas dentro de un array 
   tOcMp,
   tSeMp, 
   tDoMp,
@@ -118,10 +118,6 @@ void get_max (int s, int n, int counter) { //Permite ver que función ejecutar d
       post_maxNeg(n, counter);
     }
 }
-/*
-void get_min (int n, int counter) {
-      post_min(n, counter);
-}*/
 
 void post_data(int num, int counter){ //Organización de los resultados de todas las funciones 
         get_infoVar(counter);
